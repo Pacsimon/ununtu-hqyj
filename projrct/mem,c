@@ -1,0 +1,49 @@
+#include "mem.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+int *malloc_memory(int n)
+{
+ int *p;
+ p =(int *)malloc(n*sizeof(int));
+ if(p == NULL){
+  printf("malloc memory error\n");
+  return NULL;
+ }
+ return p;
+}
+
+void bubble_sort(int *p,int n)
+{
+ for(int i=0;i<n-1;i++){
+  for(int j=0;j<n-i-1;j++){
+   if(p[j] > p[j+1]){
+    p[j] ^= p[j+1];
+    p[j+1] ^= p[j];
+    p[j] ^= p[j+1];
+   }
+  }
+ }
+}
+void input_data(int *p,int n)
+{
+ for(int i=0;i<n;i++){
+  scanf("%d",&p[i]);
+ }
+ while(getchar()!='\n');
+ 
+}
+void data_show(int *p,int n)
+{
+ for(int i=0;i<n;i++){
+  printf("%d\t",p[i]);
+ }
+ putchar(10);
+}
+void free_memory(int *p)
+{
+ if(p != NULL){
+  free(p);
+  p=NULL;
+ }
+}
